@@ -20,3 +20,6 @@ void ImageConv_transformCosineBlock(char vector[64]);
  * @param: block
  */
 void ImageConv_inverseTransformCosineBlock(char vector[64]);
+
+void ImageConv_quantize();
+void ImageConv_dequantize();
