@@ -1,7 +1,7 @@
-#include "include/discreteCosineTransformation.h"
+#include "../include/discreteCosineTransformation.h"
 #include <stdio.h>
 
-double vector[8] = {1,2,3,4,5,6,7,8};
+float vector[8] = {1,2,3,4,5,6,7,8};
 
 static void printVector()
 {
