@@ -39,16 +39,16 @@ int main()
   HuffM_ctor(&huffman_pixel_array);
 
   (huffman_pixel_array.addList)(&huffman_pixel_array, vector1);
-  // (huffman_pixel_array.printList)(&huffman_pixel_array);
-  (huffman_pixel_array.sortList)(&huffman_pixel_array);
+  (huffman_pixel_array.printList)(&huffman_pixel_array);
+  // (huffman_pixel_array.sortList)(&huffman_pixel_array);
   // (huffman_pixel_array.printList)(&huffman_pixel_array);
 
   (huffman_main.addHuffmanList)(&huffman_main, &huffman_pixel_array);
-  // (huffman_main.printList)(&huffman_main);
+  (huffman_main.printList)(&huffman_main);
 
   (huffman_pixel_array.addList)(&huffman_pixel_array, vector2);
-  // (huffman_pixel_array.printList)(&huffman_pixel_array);
-  (huffman_pixel_array.sortList)(&huffman_pixel_array);
+  (huffman_pixel_array.printList)(&huffman_pixel_array);
+  // (huffman_pixel_array.sortList)(&huffman_pixel_array);
   // (huffman_pixel_array.printList)(&huffman_pixel_array);
 
   (huffman_main.addHuffmanList)(&huffman_main, &huffman_pixel_array);
