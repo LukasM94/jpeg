@@ -24,6 +24,8 @@ int main()
   HuffM_ctor(&huffman);
 
   (huffman.addList)(&huffman, vector);
+  (huffman.printList)(&huffman);
   (huffman.sortList)(&huffman);
+  (huffman.printList)(&huffman);
   return 0;
 }

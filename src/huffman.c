@@ -13,6 +13,7 @@
 
 #include "../include/huffman.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 
 //------------------------------------------------------------------------------
@@ -75,12 +76,11 @@ void HuffM_sortList(Huffman_t* this)
 {
   HuffmanNode_t* head_not_sorted = this->head_of_list_->right_;
   HuffmanNode_t* head_sorted     = this->head_of_list_;
-  HuffmanNode_t* tail            = this->tail_of_list_;
 
   head_sorted->right_->left_ = NULL;
   head_sorted->right_        = NULL;
 
-  while (head_not_sorted != tail)
+  while (head_not_sorted != NULL)
   {
     HuffmanNode_t* inserted_element = head_not_sorted;
     head_not_sorted = head_not_sorted->right_;
@@ -123,8 +123,20 @@ void HuffM_sortList(Huffman_t* this)
     // Insert the element in between
     inserted_element->left_  = current_element_new_list->left_;
     inserted_element->right_ = current_element_new_list;
-    
+
     current_element_new_list->left_->right_ = inserted_element;
     current_element_new_list->left_         = inserted_element;
   }
+}
+
+//------------------------------------------------------------------------------
+void HuffM_printList(Huffman_t* this)
+{
+  HuffmanNode_t* printed_element = this->head_of_list_;
+  while (printed_element != NULL)
+  {
+    printf("(count = %d, data = %d), ", printed_element->count_, printed_element->data_);
+    printed_element = printed_element->right_;
+  }
+  printf("\n");
 }

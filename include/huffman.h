@@ -25,6 +25,7 @@ typedef struct Huffman
   // Methods
   void (*addList)(struct Huffman* this, const char vector[64]);
   void (*sortList)(struct Huffman* this);
+  void (*printList)(struct Huffman* this);
 } Huffman_t;
 
 void HuffM_ctor(Huffman_t* this);
@@ -32,9 +33,11 @@ void HuffM_dtor(Huffman_t* this);
 
 void HuffM_addList(Huffman_t* this, const char vector[64]);
 void HuffM_sortList(Huffman_t* this);
+void HuffM_printList(Huffman_t* this);
 
 static void HuffM_init(Huffman_t* this)
 {
   this->addList = &HuffM_addList;
   this->sortList = &HuffM_sortList;
+  this->printList = &HuffM_printList;
 }
