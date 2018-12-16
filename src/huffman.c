@@ -95,14 +95,23 @@ void HuffM_sortList(Huffman_t* this)
     // Find the position of the element in second list
     HuffmanNode_t* current_element_new_list;
     HuffmanNode_t* next_element_new_list = head_sorted;
+    int comparison;
     while (next_element_new_list != NULL)
     {
       current_element_new_list = next_element_new_list;
-      if (current_element_new_list->count_ < inserted_element->count_)
+      comparison = this->compare(current_element_new_list,
+                                 inserted_element);
+      if (comparison != GREATER_COUNT)
       {
         break;
       }
       next_element_new_list = next_element_new_list->right_;
+    }
+
+    // if this data already exists, add the count
+    if (comparison == EQUAL_DATA)
+    {
+      current_element_new_list->count_ += inserted_element->count_;
     }
 
     // Insert the element at the tail
@@ -139,4 +148,21 @@ void HuffM_printList(Huffman_t* this)
     printed_element = printed_element->right_;
   }
   printf("\n");
+}
+
+//------------------------------------------------------------------------------
+int HuffM_compare(HuffmanNode_t* left, HuffmanNode_t* right)
+{
+  if (left->count_ <= right->count_)
+  {
+    if (left->data_ == right->data_)
+    {
+      return EQUAL_DATA;
+    }
+    return SMALLER_EQUAL_COUNT;
+  }
+  else
+  {
+    return GREATER_COUNT;
+  }
 }
