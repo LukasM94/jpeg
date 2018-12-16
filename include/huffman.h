@@ -22,7 +22,6 @@ typedef struct HuffmanNode
 typedef struct Huffman
 {
   // Member variables
-  HuffmanNode_t* head_of_tree_;
   HuffmanNode_t* head_of_list_;
   HuffmanNode_t* tail_of_list_;
 
@@ -30,6 +29,7 @@ typedef struct Huffman
   void (*addList)(struct Huffman* this, const char vector[64]);
   void (*sortList)(struct Huffman* this);
   void (*printList)(struct Huffman* this);
+  void (*addHuffmanList)(struct Huffman* this, struct Huffman* other);
 
   // Compare variante
   int (*compare)(struct HuffmanNode* left, struct HuffmanNode* right);
@@ -65,6 +65,14 @@ void HuffM_sortList(Huffman_t* this);
 void HuffM_printList(Huffman_t* this);
 
 /*
+ * Add the list of an existing huffman instant to this
+ *
+ * @param: this huffman instant
+ * @param: other huffman instant
+ */
+void HuffM_addHuffmanList(Huffman_t* this, Huffman_t* other);
+
+/*
  * Compares the left and the right node
  *
  * @param: left and right node
@@ -78,8 +86,9 @@ int HuffM_compare(HuffmanNode_t* left, HuffmanNode_t* right);
  */
 static void HuffM_init(Huffman_t* this)
 {
-  this->addList   = &HuffM_addList;
-  this->sortList  = &HuffM_sortList;
-  this->printList = &HuffM_printList;
-  this->compare   = &HuffM_compare;
+  this->addList        = &HuffM_addList;
+  this->sortList       = &HuffM_sortList;
+  this->printList      = &HuffM_printList;
+  this->addHuffmanList = &HuffM_addHuffmanList;
+  this->compare        = &HuffM_compare;
 }
