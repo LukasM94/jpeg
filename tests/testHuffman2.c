@@ -40,18 +40,17 @@ int main()
 
   // Add the elements to the list of huffman_pixel_array
   (huffman_pixel_array.addList)(&huffman_pixel_array, vector1);
-  (huffman_pixel_array.printList)(&huffman_pixel_array);
+
+  // Append the elements from huffman_pixel_array to huffman_main
+  (huffman_main.addHuffmanList)(&huffman_main, &huffman_pixel_array);
+
+  // Add the elements to the list of huffman_pixel_array
+  (huffman_pixel_array.addList)(&huffman_pixel_array, vector2);
 
   // Append the elements from huffman_pixel_array to huffman_main
   (huffman_main.addHuffmanList)(&huffman_main, &huffman_pixel_array);
   (huffman_main.printList)(&huffman_main);
-
-  // Add the elements to the list of huffman_pixel_array
-  (huffman_pixel_array.addList)(&huffman_pixel_array, vector2);
-  (huffman_pixel_array.printList)(&huffman_pixel_array);
-
-  // Append the elements from huffman_pixel_array to huffman_main
-  (huffman_main.addHuffmanList)(&huffman_main, &huffman_pixel_array);
+  (huffman_main.sortList)(&huffman_main);
   (huffman_main.printList)(&huffman_main);
 
 

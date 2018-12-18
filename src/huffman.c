@@ -201,7 +201,7 @@ void HuffM_addHuffmanList(Huffman_t* this, Huffman_t* other)
       current_element_of_this = next_element_of_this;
       comparison = this->compare(current_element_of_this,
                                  inserted_element);
-      if (comparison != GREATER_COUNT)
+      if (comparison == EQUAL_DATA)
       {
         break;
       }
@@ -217,28 +217,8 @@ void HuffM_addHuffmanList(Huffman_t* this, Huffman_t* other)
     }
 
     // Insert the element at the tail
-    if (next_element_of_this == NULL)
-    {
-      current_element_of_this->right_ = inserted_element;
-      inserted_element->left_         = current_element_of_this;
-      continue;
-    }
-
-    // Insert the element at the head
-    if (current_element_of_this->left_ == NULL)
-    {
-      current_element_of_this->left_ = inserted_element;
-      inserted_element->right_       = current_element_of_this;
-      head_of_this                   = inserted_element;
-      continue;
-    }
-
-    // Insert the element in between
-    inserted_element->left_  = current_element_of_this->left_;
-    inserted_element->right_ = current_element_of_this;
-
-    current_element_of_this->left_->right_ = inserted_element;
-    current_element_of_this->left_         = inserted_element;
+    current_element_of_this->right_ = inserted_element;
+    inserted_element->left_         = current_element_of_this;
   }
   other->head_of_list_ = NULL;
   other->tail_of_list_ = NULL;
