@@ -94,9 +94,10 @@ static void HuffM_init(Huffman_t* this)
 }
 
 /*
- * Initialize the huffman "class"
+ * Initialize the interface
  */
-static void HuffM_initPrint(Huffman_t* this, void (*print_function)(const char* format, ...))
+static void HuffM_initPrint(Huffman_t* this,
+                            void (*print_function)(const char* format, ...))
 {
   this->print = print_function;
 }
