@@ -30,8 +30,9 @@ typedef struct Huffman
   void (*printList)(struct Huffman* this);
   void (*addHuffmanList)(struct Huffman* this, struct Huffman* other);
 
-  // Compare variante
+  // Used as function pointers
   int (*compare)(struct HuffmanNode* left, struct HuffmanNode* right);
+  void (*print)(const char* format, ...);
 } Huffman_t;
 
 /*
@@ -59,7 +60,7 @@ void HuffM_addList(Huffman_t* this, const char vector[64]);
 void HuffM_sortList(Huffman_t* this);
 
 /*
- * Pint the list in order or the double linked list
+ * Pint the list in order or the single linked list
  */
 void HuffM_printList(Huffman_t* this);
 
@@ -90,4 +91,12 @@ static void HuffM_init(Huffman_t* this)
   this->printList      = &HuffM_printList;
   this->addHuffmanList = &HuffM_addHuffmanList;
   this->compare        = &HuffM_compare;
+}
+
+/*
+ * Initialize the huffman "class"
+ */
+static void HuffM_initPrint(Huffman_t* this, void (*print_function)(const char* format, ...))
+{
+  this->print = print_function;
 }

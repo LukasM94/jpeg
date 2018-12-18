@@ -1,4 +1,4 @@
-#include "../include/imageConvertion.h"
+#include "../include/ImageConvertion.h"
 #include <stdio.h>
 
 char vector[64] =

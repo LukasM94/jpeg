@@ -1,4 +1,4 @@
-#include "../include/huffman.h"
+#include "../include/Huffman.h"
 #include <stdio.h>
 
 Huffman_t huffman_main;
@@ -32,6 +32,7 @@ int main()
 {
   // Inits the huffman "class"
   HuffM_init(&huffman_main);
+  HuffM_initPrint(&huffman_main, (void*)printf);
   HuffM_init(&huffman_pixel_array);
 
   // Constructs a new instant
@@ -50,7 +51,7 @@ int main()
   // Append the elements from huffman_pixel_array to huffman_main
   (huffman_main.addHuffmanList)(&huffman_main, &huffman_pixel_array);
 
-  // Sort the double linked list
+  // Sort the single linked list
   // Starting with the highest count => huffman says most relevant
   (huffman_main.printList)(&huffman_main);
   (huffman_main.sortList)(&huffman_main);

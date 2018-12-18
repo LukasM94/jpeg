@@ -8,10 +8,9 @@
     and convert it to a jpeg file
 */
 
-#include "../include/imageConvertion.h"
-#include "../include/discreteCosineTransformation.h"
+#include "../include/ImageConvertion.h"
+#include "../include/DiscreteCosineTransformation.h"
 #include <math.h>
-#include <stdio.h>
 
 static float buffer_[64];
 const static char QUANTIZATION_TABLE[64] =
@@ -40,12 +39,6 @@ void ImageConv_transformCosineBlock(char vector[64])
     FastDct8_transform(&buffer_[8 * i]);
   }
   ptr_buffer = buffer_;
-  printf("\n");
-  for (int i = 0; i < 64; i++)
-  {
-    printf("%.0f ", *(ptr_buffer++));
-  }
-  printf("\n");
 }
 
 //-----------------------------------------------------------------------------
@@ -61,7 +54,6 @@ void ImageConv_inverseTransformCosineBlock(char vector[64])
   {
     *(ptr_vector++) = *(ptr_buffer++);
   }
-  // vector[0] = 0xf;
 }
 
 //-----------------------------------------------------------------------------
@@ -69,15 +61,11 @@ void ImageConv_quantize()
 {
   float*      ptr_buffer = buffer_;
   const char* ptr_quanti = QUANTIZATION_TABLE;
-  printf("\n");
   for (int i = 0; i < 64; i++)
   {
-    // *(ptr_buffer++) /= (float)*(ptr_quanti++);
     *(ptr_buffer) = *(ptr_buffer)/(float)*(ptr_quanti++);
     *(ptr_buffer) = truncf(*(ptr_buffer));
-    printf("%.0f ", *(ptr_buffer++));
   }
-  printf("\n");
 }
 
 //-----------------------------------------------------------------------------
@@ -85,12 +73,8 @@ void ImageConv_dequantize()
 {
   float*      ptr_buffer = buffer_;
   const char* ptr_quanti = QUANTIZATION_TABLE;
-  printf("\n");
   for (int i = 0; i < 64; i++)
   {
-    // *(ptr_buffer++) *= (float)*(ptr_quanti++);
     *(ptr_buffer) = *(ptr_buffer)*(float)*(ptr_quanti++);
-    printf("%.0f ", *(ptr_buffer++));
   }
-  printf("\n");
 }

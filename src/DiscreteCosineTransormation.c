@@ -22,7 +22,7 @@
  */
 
 #include <math.h>
-#include "../include/discreteCosineTransformation.h"
+#include "../include/DiscreteCosineTransformation.h"
 
 
 // static const double S[] = {

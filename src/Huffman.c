@@ -11,9 +11,8 @@
       - third:  create the tree
 */
 
-#include "../include/huffman.h"
+#include "../include/Huffman.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 
 //------------------------------------------------------------------------------
@@ -155,13 +154,20 @@ void HuffM_sortList(Huffman_t* this)
 //------------------------------------------------------------------------------
 void HuffM_printList(Huffman_t* this)
 {
+  if (this->print == NULL)
+  {
+    return;
+  }
+
   HuffmanNode_t* printed_element = this->head_of_list_;
   while (printed_element != NULL)
   {
-    printf("(count = %d, data = %d), ", printed_element->count_, printed_element->data_);
+    this->print("(count = %d, data = %d), ", printed_element->count_, printed_element->data_);
+    // printf("(count = %d, data = %d), ", printed_element->count_, printed_element->data_);
     printed_element = printed_element->right_;
   }
-  printf("\n\n");
+  this->print("\n\n");
+  // printf("\n\n");
 }
 
 //------------------------------------------------------------------------------

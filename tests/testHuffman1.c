@@ -1,4 +1,4 @@
-#include "../include/huffman.h"
+#include "../include/Huffman.h"
 #include <stdio.h>
 
 Huffman_t huffman_main;
