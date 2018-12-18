@@ -23,7 +23,6 @@ typedef struct Huffman
 {
   // Member variables
   HuffmanNode_t* head_of_list_;
-  HuffmanNode_t* tail_of_list_;
 
   // Methods
   void (*addList)(struct Huffman* this, const char vector[64]);

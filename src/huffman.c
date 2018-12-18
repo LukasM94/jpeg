@@ -22,7 +22,6 @@ static void addToList(Huffman_t* this, const char element)
   if (this->head_of_list_ == NULL)
   {
     this->head_of_list_ = (HuffmanNode_t*)malloc(sizeof(HuffmanNode_t));
-    this->tail_of_list_ = this->head_of_list_;
     (*this->head_of_list_).left_  = NULL;
     (*this->head_of_list_).right_ = NULL;
     (*this->head_of_list_).data_  = element;
@@ -31,7 +30,7 @@ static void addToList(Huffman_t* this, const char element)
   }
 
   HuffmanNode_t* list_element = this->head_of_list_;
-  HuffmanNode_t* tail         = this->tail_of_list_;
+  HuffmanNode_t* tail;
 
   // Search for the same element in the list
   while (list_element != NULL)
@@ -41,6 +40,7 @@ static void addToList(Huffman_t* this, const char element)
       (*list_element).count_++;
       return;
     }
+    tail         = list_element;
     list_element = list_element->right_;
   }
 
@@ -51,14 +51,12 @@ static void addToList(Huffman_t* this, const char element)
   (*list_element).right_ = NULL;
   (*list_element).data_  = element;
   (*list_element).count_ = 1;
-  this->tail_of_list_    = list_element;
 }
 
 //------------------------------------------------------------------------------
 void HuffM_ctor(Huffman_t* this)
 {
   this->head_of_list_ = NULL;
-  this->tail_of_list_ = NULL;
 }
 
 //------------------------------------------------------------------------------
@@ -221,7 +219,6 @@ void HuffM_addHuffmanList(Huffman_t* this, Huffman_t* other)
     inserted_element->left_         = current_element_of_this;
   }
   other->head_of_list_ = NULL;
-  other->tail_of_list_ = NULL;
 }
 
 //------------------------------------------------------------------------------

@@ -49,6 +49,9 @@ int main()
 
   // Append the elements from huffman_pixel_array to huffman_main
   (huffman_main.addHuffmanList)(&huffman_main, &huffman_pixel_array);
+
+  // Sort the double linked list
+  // Starting with the highest count => huffman says most relevant
   (huffman_main.printList)(&huffman_main);
   (huffman_main.sortList)(&huffman_main);
   (huffman_main.printList)(&huffman_main);
