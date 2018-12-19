@@ -11,12 +11,17 @@
 #define EQUAL_DATA          0
 #define GREATER_COUNT       1
 
+#define PARENT              0xaffe
+#define IS_PARENT(x)        (x == PARENT)
+
 typedef struct HuffmanNode
 {
   int count_;
   int data_;
   struct HuffmanNode* left_;
   struct HuffmanNode* right_;
+  struct HuffmanNode* child_left_;
+  struct HuffmanNode* child_right_;
 } HuffmanNode_t;
 
 typedef struct Huffman
@@ -28,6 +33,7 @@ typedef struct Huffman
   void (*addList)(struct Huffman* this, const char vector[64]);
   void (*sortList)(struct Huffman* this);
   void (*printList)(struct Huffman* this);
+  void (*printTree)(struct Huffman* this);
   void (*addHuffmanList)(struct Huffman* this, struct Huffman* other);
 
   // Used as function pointers
@@ -60,9 +66,14 @@ void HuffM_addList(Huffman_t* this, const char vector[64]);
 void HuffM_sortList(Huffman_t* this);
 
 /*
- * Pint the list in order or the single linked list
+ * Pint the list in order or the double linked list
  */
 void HuffM_printList(Huffman_t* this);
+
+/*
+ * Pint the tree
+ */
+void HuffM_printTree(Huffman_t* this);
 
 /*
  * Add the list of an existing huffman instant to this
@@ -89,6 +100,7 @@ static void HuffM_init(Huffman_t* this)
   this->addList        = &HuffM_addList;
   this->sortList       = &HuffM_sortList;
   this->printList      = &HuffM_printList;
+  this->printTree      = &HuffM_printTree;
   this->addHuffmanList = &HuffM_addHuffmanList;
   this->compare        = &HuffM_compare;
 }

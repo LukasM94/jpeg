@@ -21,10 +21,12 @@ static void addToList(Huffman_t* this, const char element)
   if (this->head_of_list_ == NULL)
   {
     this->head_of_list_ = (HuffmanNode_t*)malloc(sizeof(HuffmanNode_t));
-    (*this->head_of_list_).left_  = NULL;
-    (*this->head_of_list_).right_ = NULL;
-    (*this->head_of_list_).data_  = element;
-    (*this->head_of_list_).count_ = 1;
+    (*this->head_of_list_).left_        = NULL;
+    (*this->head_of_list_).right_       = NULL;
+    (*this->head_of_list_).child_left_  = NULL;
+    (*this->head_of_list_).child_right_ = NULL;
+    (*this->head_of_list_).data_        = element;
+    (*this->head_of_list_).count_       = 1;
     return;
   }
 
@@ -46,10 +48,12 @@ static void addToList(Huffman_t* this, const char element)
   // Add the element to the end of the list
   list_element = (HuffmanNode_t*)malloc(sizeof(HuffmanNode_t));
   tail->right_ = list_element;
-  (*list_element).left_  = tail;
-  (*list_element).right_ = NULL;
-  (*list_element).data_  = element;
-  (*list_element).count_ = 1;
+  (*list_element).left_        = tail;
+  (*list_element).right_       = NULL;
+  (*list_element).child_left_  = NULL;
+  (*list_element).child_right_ = NULL;
+  (*list_element).data_        = element;
+  (*list_element).count_       = 1;
 }
 
 //------------------------------------------------------------------------------
@@ -168,6 +172,28 @@ void HuffM_printList(Huffman_t* this)
   }
   this->print("\n\n");
   // printf("\n\n");
+}
+
+//------------------------------------------------------------------------------
+static void printTree(Huffman_t* this, HuffmanNode_t* root)
+{
+  if (root->child_left_ != NULL)
+  {
+    printTree(this, root->child_left_);
+  }
+
+  if (root->child_right_ != NULL)
+  {
+    printTree(this, root->child_right_);
+  }
+
+  (this->print)("(count = %d, data = %d), ", root->count_, root->data_);
+}
+
+//------------------------------------------------------------------------------
+void HuffM_printTree(Huffman_t* this)
+{
+  printTree(this, this->head_of_list_);
 }
 
 //------------------------------------------------------------------------------

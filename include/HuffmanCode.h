@@ -19,6 +19,7 @@ typedef struct HuffmanCode
   void (*createList)(struct HuffmanCode* this,
                      const char*         vectors,
                      int                 count_vectors);
+  void (*convertToTree)(struct HuffmanCode* this);
   void (*printList)(struct HuffmanCode* this);
   void (*printTree)(struct HuffmanCode* this);
 
@@ -50,6 +51,14 @@ void HuffMCode_createList(HuffmanCode_t* this,
                           int            count_vectors);
 
 /*
+ * Converts the list to the tree
+ * Importtan: you have to createList first
+ *
+ * @param: this
+ */
+void HuffMCode_convertToTree(HuffmanCode_t* this);
+
+/*
  * Prints the list
  */
 void HuffMCode_printList(HuffmanCode_t* this);
@@ -67,6 +76,7 @@ static void HuffMCode_init(HuffmanCode_t* this)
   HuffM_init(&this->huffman_main_);
   HuffM_init(&this->huffman_temp_);
   this->createList = &HuffMCode_createList;
+  this->convertToTree = &HuffMCode_convertToTree;
   this->printList  = &HuffMCode_printList;
   this->printTree  = &HuffMCode_printTree;
 }
